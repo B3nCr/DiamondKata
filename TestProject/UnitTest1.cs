@@ -13,10 +13,14 @@ namespace TestProject
             _diamondBuilder = new DiamondBuilder(outputHelper);
         }
 
-        [Fact]
-        public void Build_NonAlpha_ReturnsEmpty()
+        [Theory]
+        [InlineData('1')]
+        [InlineData(' ')]
+        [InlineData('£')]
+        [InlineData(new char())]
+        public void Build_NonAlpha_ReturnsEmpty(char nonAlpha)
         {
-            var result = _diamondBuilder.Build('1');
+            var result = _diamondBuilder.Build(nonAlpha);
             Assert.Equal(0, result.Length);
         }
 
