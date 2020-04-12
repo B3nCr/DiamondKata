@@ -19,10 +19,11 @@ namespace TestProject
             int lengthOfArray = GetLengthOfArray(charIndex);
             var result = new string[lengthOfArray];
 
-            for (int i = 0; i < lengthOfArray; i++)
+            for (int i = 0; i < charIndex+1; i++)
             {
                 char charForI = GetCharForIndex(i);
                 result[i] = charForI.ToString();
+
                 if (charForI == value)
                 {
                     break;
