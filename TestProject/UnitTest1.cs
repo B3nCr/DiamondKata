@@ -75,5 +75,38 @@ namespace TestProject
             Assert.Equal("B B", result[1]);
             Assert.Equal(" A ", result[2]);
         }
+
+        [Fact]
+        public void Build_Z_ReturnsExpected()
+        {
+            var result = _diamondBuilder.Build('Z');
+
+            Assert.StartsWith("                         A", result[0]);
+            Assert.StartsWith("                        B ", result[1]);
+            Assert.StartsWith("                       C  ", result[2]);
+            Assert.StartsWith("                      D   ", result[3]);
+            Assert.StartsWith("                     E    ", result[4]);
+            Assert.StartsWith("                    F     ", result[5]);
+            Assert.StartsWith("                   G      ", result[6]);
+            Assert.StartsWith("                  H       ", result[7]);
+            Assert.StartsWith("                 I        ", result[8]);
+            Assert.StartsWith("                J         ", result[9]);
+            Assert.StartsWith("               K          ", result[10]);
+            Assert.StartsWith("              L           ", result[11]);
+            Assert.StartsWith("             M            ", result[12]);
+            Assert.StartsWith("            N             ", result[13]);
+            Assert.StartsWith("           O              ", result[14]);
+            Assert.StartsWith("          P               ", result[15]);
+            Assert.StartsWith("         Q                ", result[16]);
+            Assert.StartsWith("        R                 ", result[17]);
+            Assert.StartsWith("       S                  ", result[18]);
+            Assert.StartsWith("      T                   ", result[19]);
+            Assert.StartsWith("     U                    ", result[20]);
+            Assert.StartsWith("    V                     ", result[21]);
+            Assert.StartsWith("   W                      ", result[22]);
+            Assert.StartsWith("  X                       ", result[23]);
+            Assert.StartsWith(" Y                        ", result[24]);
+            Assert.StartsWith("Z                         ", result[25]);
+        }
     }
 }
