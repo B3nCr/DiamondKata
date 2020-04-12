@@ -45,8 +45,10 @@ namespace TestProject
             var paddingLength = valueIndex - i;
             var paddingString = new string(' ', paddingLength);
             var characterForI = ((char)(i + AsciiCodeForA));
-
-            return $"{paddingString}{characterForI}{(i > 0 ? characterForI.ToString() : string.Empty) }{paddingString}";
+            string innerPadding = string.Empty;
+            if (i > 0)
+                innerPadding = new string(' ', i * 2 - 1);
+            return $"{paddingString}{characterForI}{innerPadding}{(i > 0 ? characterForI.ToString() : string.Empty) }{paddingString}";
         }
 
         private int GetLengthOfLine(int charIndex)
