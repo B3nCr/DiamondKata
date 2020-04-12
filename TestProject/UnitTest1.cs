@@ -14,6 +14,13 @@ namespace TestProject
         }
 
         [Fact]
+        public void Build_NonAlpha_ReturnsEmpty()
+        {
+            var result = _diamondBuilder.Build('1');
+            Assert.Equal(0, result.Length);
+        }
+
+        [Fact]
         public void Build_A_ReturnsExpected()
         {
             var result = _diamondBuilder.Build('A');
