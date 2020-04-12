@@ -1,9 +1,11 @@
+using System;
 using Xunit.Abstractions;
 
 namespace TestProject
 {
     public class DiamondBuilder
     {
+        private const int AsciiCodeForA = 65;
         private readonly ITestOutputHelper outputHelper;
 
         public DiamondBuilder(ITestOutputHelper outputHelper)
@@ -13,78 +15,57 @@ namespace TestProject
 
         public string[] Build(char value)
         {
-            int charIndex = (int)value;
-            charIndex -= 65;
+            int charIndex = GetCharIndex(value);
+            int lengthOfArray = GetLengthOfArray(charIndex);
+            var result = new string[lengthOfArray];
 
-            if (charIndex == 0)
+            for (int i = 0; i < lengthOfArray; i++)
             {
-                var letter = (char)(65);
-                return new[] { letter.ToString() };
-            }
-            else
-            {
-                var output = new string[1 + (2 * charIndex)];// total length of line =  1 + (2 * charIndex)
-                                                             //line = {padding}{letter}{middlePadding=totalLengthOfLine-2-(2*padding)}{letter}{padding}"
-                                                             /*
-                                                              *   22A22
-                                                              *   1B1B1   
-                                                              *
-                                                              *
-                                                              *
-                                                              */
-                var totalLengthOfLine = (2 * (1 + charIndex)) - 1; //a:1; B: 3; c: 5; D:7
-
-                int outerPadding = charIndex;
-                int innerPadding;
-
-                bool beforeMiddle = true;
-                for (var i = 0; i <= 2 * charIndex; i++)
+                char charForI = GetCharForIndex(i);
+                result[i] = charForI.ToString();
+                if (charForI == value)
                 {
-                    var padding = new string(' ', charIndex);
-
-                  
-
-                    char letter = 'X';
-
-                    if (i <= charIndex)
-                    {
-                        letter = (char)(65 + i);
-                    }
-                    else
-                    {
-                        letter = (char)(66 + (charIndex - i));
-                    }
-
-                    if (letter == value)
-                    {
-                        output[i] = $"{letter}{padding}{letter}";
-                    }
-                    else
-                    {
-                        outputHelper.WriteLine(
-                            $"Padding: \"{padding}\" Letter: {letter}, i: {i}, totalLengthOfLine: {totalLengthOfLine}");
-                        var secondLetter = i==0? "":$"{new string(' ', (totalLengthOfLine - 2) - (2 * outerPadding))}{letter}";
-                        output[i] = $"{new string(' ', outerPadding)}{letter}{secondLetter}{new string(' ', outerPadding)}";
-                    }
-
-                    if (beforeMiddle)
-                    {
-                        outerPadding--;
-                    }
-                    else
-                    {
-                        outerPadding++;
-                    }
-
-                    if (outerPadding == 0)
-                    {
-                        beforeMiddle = false;
-                    }
+                    break;
                 }
-
-                return output;
-
             }
+
+            if (charIndex != 0)
+            {
+                for (int i = 0; i < charIndex; i++)
+                {
+                    result[lengthOfArray - (i + 1)] = result[i];
+                }
+            }
+
+            return result;
+        }
+
+        private static char GetCharForIndex(int i)
+        {
+            return ((char)(i + AsciiCodeForA));
+        }
+
+        private int GetLengthOfLine(int charIndex)
+        {
+            //line = {padding}{letter}{middlePadding=totalLengthOfLine-2-(2*padding)}{letter}{padding}"
+            /*
+             *   22A22
+             *   1B1B1   
+             *
+             */
+            return (2 * (1 + charIndex)) - 1;
+        }
+
+        private static int GetLengthOfArray(int charIndex)
+        {
+            return 1 + (2 * charIndex);
+        }
+
+        private static int GetCharIndex(char value)
+        {
+            int charIndex = (int)value;
+            charIndex -= AsciiCodeForA;
+            return charIndex;
         }
     }
 }
