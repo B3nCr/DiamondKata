@@ -21,6 +21,13 @@ namespace TestProject
         }
 
         [Fact]
+        public void Build_a_ConvertsToUppercase()
+        {
+            var result = _diamondBuilder.Build('a');
+            Assert.Equal("A", result[0]);
+        }
+
+        [Fact]
         public void Build_B_AddsOuterPadding()
         {
             var result = _diamondBuilder.Build('B');

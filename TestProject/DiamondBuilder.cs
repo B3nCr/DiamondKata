@@ -15,6 +15,8 @@ namespace TestProject
 
         public string[] Build(char value)
         {
+            value = char.ToUpperInvariant(value);
+
             int charIndex = GetCharIndex(value);
             int lengthOfArray = GetLengthOfArray(charIndex);
             var result = new string[lengthOfArray];
