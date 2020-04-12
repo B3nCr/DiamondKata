@@ -77,6 +77,13 @@ namespace TestProject
         }
 
         [Fact]
+        public void Build_Z_ReturnsCorrectLengthArray()
+        {
+            var result = _diamondBuilder.Build('Z');
+            Assert.Equal(result.Length, 51);
+        }
+
+        [Fact]
         public void Build_Z_ReturnsExpected()
         {
             var result = _diamondBuilder.Build('Z');
