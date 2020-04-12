@@ -25,7 +25,7 @@ namespace TestProject
         {
             var result = _diamondBuilder.Build('B');
             Assert.Equal(" A ", result[0]);
-            Assert.Equal("BB", result[1]);
+            Assert.Equal("B B", result[1]);
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace TestProject
         {
             var result = _diamondBuilder.Build('B');
             Assert.Equal(" A ", result[0]);
-            Assert.Equal("BB", result[1]);
+            Assert.Equal("B B", result[1]);
             Assert.Equal(" A ", result[2]);
         }
 
@@ -42,9 +42,9 @@ namespace TestProject
         {
             var result = _diamondBuilder.Build('C');
             Assert.Equal("  A  ", result[0]);
-            Assert.Equal(" BB ", result[1]);
-            Assert.Equal("CC", result[2]);
-            Assert.Equal(" BB ", result[3]);
+            Assert.Equal(" B B ", result[1]);
+            Assert.Equal("C   C", result[2]);
+            Assert.Equal(" B B ", result[3]);
             Assert.Equal("  A  ", result[4]);
         }
 
@@ -54,7 +54,7 @@ namespace TestProject
             var result = _diamondBuilder.Build('B');
             Assert.Equal(3, result.Length);
             Assert.Equal(" A ", result[0]);
-            Assert.Equal("BB", result[1]);
+            Assert.Equal("B B", result[1]);
             Assert.Equal(" A ", result[2]);
         }
     }

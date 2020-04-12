@@ -51,12 +51,6 @@ namespace TestProject
 
         private int GetLengthOfLine(int charIndex)
         {
-            //line = {padding}{letter}{middlePadding=totalLengthOfLine-2-(2*padding)}{letter}{padding}"
-            /*
-             *   22A22
-             *   1B1B1   
-             *
-             */
             return (2 * (1 + charIndex)) - 1;
         }
 
