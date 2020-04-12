@@ -15,6 +15,11 @@ namespace TestProject
 
         public string[] Build(char value)
         {
+            if (!char.IsLetter(value))
+            {
+                return new string[0];
+            }
+
             value = char.ToUpperInvariant(value);
 
             int charIndex = GetCharIndex(value);
@@ -47,9 +52,13 @@ namespace TestProject
             var paddingLength = valueIndex - i;
             var paddingString = new string(' ', paddingLength);
             var characterForI = ((char)(i + AsciiCodeForA));
-            string innerPadding = string.Empty;
+            
+            var innerPadding = string.Empty;
             if (i > 0)
+            {
                 innerPadding = new string(' ', i * 2 - 1);
+            }
+
             return $"{paddingString}{characterForI}{innerPadding}{(i > 0 ? characterForI.ToString() : string.Empty) }{paddingString}";
         }
 
