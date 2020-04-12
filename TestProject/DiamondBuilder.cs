@@ -19,7 +19,7 @@ namespace TestProject
             int lengthOfArray = GetLengthOfArray(charIndex);
             var result = new string[lengthOfArray];
 
-            for (int i = 0; i < charIndex+1; i++)
+            for (int i = 0; i < charIndex + 1; i++)
             {
                 result[i] = GetStringForIndex(i, charIndex);
 
@@ -45,7 +45,8 @@ namespace TestProject
             var paddingLength = valueIndex - i;
             var paddingString = new string(' ', paddingLength);
             var characterForI = ((char)(i + AsciiCodeForA));
-            return $"{paddingString}{characterForI}{paddingString}";
+
+            return $"{paddingString}{characterForI}{(i > 0 ? characterForI.ToString() : string.Empty) }{paddingString}";
         }
 
         private int GetLengthOfLine(int charIndex)
