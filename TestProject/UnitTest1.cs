@@ -21,21 +21,31 @@ namespace TestProject
         }
 
         [Fact]
-        public void Build_B_IncreasesToB()
+        public void Build_B_AddsOuterPadding()
         {
             var result = _diamondBuilder.Build('B');
-            Assert.Equal("A", result[0]);
+            Assert.Equal(" A ", result[0]);
             Assert.Equal("B", result[1]);
-            //Assert.Equal("A", result[2]);
         }
 
         [Fact]
         public void Build_B_ReturnsAllRows()
         {
             var result = _diamondBuilder.Build('B');
-            Assert.Equal("A", result[0]);
+            Assert.Equal(" A ", result[0]);
             Assert.Equal("B", result[1]);
-            Assert.Equal("A", result[2]);
+            Assert.Equal(" A ", result[2]);
+        }
+
+        [Fact]
+        public void Build_C_ReturnsAllRows()
+        {
+            var result = _diamondBuilder.Build('C');
+            Assert.Equal("  A  ", result[0]);
+            Assert.Equal(" B ", result[1]);
+            Assert.Equal("C", result[2]);
+            Assert.Equal(" B ", result[3]);
+            Assert.Equal("  A  ", result[4]);
         }
 
         [Fact(Skip = "true")]

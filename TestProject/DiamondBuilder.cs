@@ -21,10 +21,9 @@ namespace TestProject
 
             for (int i = 0; i < charIndex+1; i++)
             {
-                char charForI = GetCharForIndex(i);
-                result[i] = charForI.ToString();
+                result[i] = GetStringForIndex(i, charIndex);
 
-                if (charForI == value)
+                if (i == charIndex)
                 {
                     break;
                 }
@@ -41,9 +40,12 @@ namespace TestProject
             return result;
         }
 
-        private static char GetCharForIndex(int i)
+        private static string GetStringForIndex(int i, int valueIndex)
         {
-            return ((char)(i + AsciiCodeForA));
+            var paddingLength = valueIndex - i;
+            var paddingString = new string(' ', paddingLength);
+            var characterForI = ((char)(i + AsciiCodeForA));
+            return $"{paddingString}{characterForI}{paddingString}";
         }
 
         private int GetLengthOfLine(int charIndex)
